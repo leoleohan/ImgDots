@@ -15,33 +15,27 @@ import java.util.List;
 
 public class ImageBrowseActivity extends AppCompatActivity {
 
-    private ViewPager viewPagerImgs;
-
-    private List<ImgSimple> imgSimples;
+    private ViewPager viewPager;
+    private List<ImgSimple> imgList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_image_browse);
 
-
-        viewPagerImgs = (ViewPager) this.findViewById(R.id.viewPagerImgs);
-        viewPagerImgs.setOffscreenPageLimit(2);
+        viewPager = (ViewPager) this.findViewById(R.id.viewPagerImgs);
+        viewPager.setOffscreenPageLimit(2);
 
         initData();
-
-        PagerAdapter adapter = new ImgBrowsePagerAdapter(this, imgSimples);
-        viewPagerImgs.setAdapter(adapter);
-
+        PagerAdapter adapter = new ImgBrowsePagerAdapter(this, imgList);
+        viewPager.setAdapter(adapter);
     }
 
     private void initData() {
-
-        imgSimples = new ArrayList<>();
+        imgList = new ArrayList<>();
 
         ImgSimple imgSimple1 = new ImgSimple();
-        imgSimple1.url = "http://o79w6dswy.bkt.clouddn.com/img5.png";
+        imgSimple1.url = "http://file29.mafengwo.net/M00/B7/82/wKgBpVVyssiACp0tAASOeEyh5fo07.jpeg";
         imgSimple1.scale = 1.6f;
 
         ArrayList<PointSimple> pointSimples = new ArrayList<>();
@@ -81,7 +75,7 @@ public class ImageBrowseActivity extends AppCompatActivity {
 
 
         ImgSimple imgSimple2 = new ImgSimple();
-        imgSimple2.url = "http://o79w6dswy.bkt.clouddn.com/img3.png";
+        imgSimple2.url = "http://exp.cdn-hotels.com/hotels/3000000/2200000/2190900/2190860/2190860_266_z.jpg";
         imgSimple2.scale = 1.6f;
 
         ArrayList<PointSimple> pointSimples2 = new ArrayList<>();
@@ -93,11 +87,9 @@ public class ImageBrowseActivity extends AppCompatActivity {
         pointSimple8.width_scale = 0.64f;
         pointSimple8.height_scale = 0.5f;
 
-
         PointSimple pointSimple9 = new PointSimple();
         pointSimple9.width_scale = 0.276f;
         pointSimple9.height_scale = 0.764f;
-
 
         pointSimples2.add(pointSimple7);
         pointSimples2.add(pointSimple8);
@@ -105,9 +97,8 @@ public class ImageBrowseActivity extends AppCompatActivity {
 
         imgSimple2.pointSimples = pointSimples2;
 
-
         ImgSimple imgSimple3 = new ImgSimple();
-        imgSimple3.url = "http://o79w6dswy.bkt.clouddn.com/421428.jpg";
+        imgSimple3.url = "http://exp.cdn-hotels.com/hotels/2000000/1160000/1154600/1154545/1154545_73_z.jpg";
         imgSimple3.scale = 0.75f;
 
         ArrayList<PointSimple> pointSimples3 = new ArrayList<>();
@@ -119,11 +110,9 @@ public class ImageBrowseActivity extends AppCompatActivity {
         pointSimple12.width_scale = 0.3f;
         pointSimple12.height_scale = 0.5f;
 
-
         PointSimple pointSimple13 = new PointSimple();
         pointSimple13.width_scale = 0.5f;
         pointSimple13.height_scale = 0.8f;
-
 
         pointSimples3.add(pointSimple11);
         pointSimples3.add(pointSimple12);
@@ -131,8 +120,9 @@ public class ImageBrowseActivity extends AppCompatActivity {
 
         imgSimple3.pointSimples = pointSimples3;
 
-        imgSimples.add(imgSimple1);
-        imgSimples.add(imgSimple2);
-        imgSimples.add(imgSimple3);
+        imgList.add(imgSimple1);
+        imgList.add(imgSimple2);
+        imgList.add(imgSimple3);
     }
+
 }
