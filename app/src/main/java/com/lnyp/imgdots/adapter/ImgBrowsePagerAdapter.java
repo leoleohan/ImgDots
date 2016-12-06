@@ -20,14 +20,12 @@ import java.util.List;
 public class ImgBrowsePagerAdapter extends PagerAdapter {
 
     private List<ImgSimple> imgList;
-    private List<View> views;
     private Context context;
     private int width;
 
     public ImgBrowsePagerAdapter(Context context, List<ImgSimple> imgList) {
         this.context = context;
         this.imgList = imgList;
-        this.views = new ArrayList<>();
         DisplayMetrics dm = new DisplayMetrics();
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(dm);
         width = dm.widthPixels;
@@ -58,7 +56,7 @@ public class ImgBrowsePagerAdapter extends PagerAdapter {
             ArrayList<PointSimple> pointSimples = imgList.get(position).pointSimples;
             layoutContent.setPoints(pointSimples);
             int height = (int) (width * scale);
-            layoutContent.setImgBg(width, height, imgUrl);
+            layoutContent.setImage(width, height, imgUrl);
         } catch (Exception e) {
             e.printStackTrace();
         }

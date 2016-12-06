@@ -19,10 +19,10 @@ import java.util.ArrayList;
 
 public class ImageLayout extends FrameLayout implements View.OnClickListener {
 
-    private ArrayList<PointSimple> points;
-    private FrameLayout layoutPoints;
-    private ImageView imgBg;
-    private Context mContext;
+    private ArrayList<PointSimple> pointList;
+    private FrameLayout pointsLayout;
+    private ImageView imageView;
+    private Context context;
 
     public ImageLayout(Context context) {
         this(context, null);
@@ -34,49 +34,39 @@ public class ImageLayout extends FrameLayout implements View.OnClickListener {
 
     public ImageLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initView(context, attrs);
+        initView(context);
     }
 
-    private void initView(Context context, AttributeSet attrs) {
-        mContext = context;
+    private void initView(Context context) {
+        this.context = context;
         View imgPointLayout = inflate(context, R.layout.layout_imgview_point, this);
-        imgBg = (ImageView) imgPointLayout.findViewById(R.id.imgBg);
-        layoutPoints = (FrameLayout) imgPointLayout.findViewById(R.id.layouPoints);
+        imageView = (ImageView) imgPointLayout.findViewById(R.id.imgBg);
+        pointsLayout = (FrameLayout) imgPointLayout.findViewById(R.id.pointsLayout);
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    }
-
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-    }
-
-    public void setImgBg(int width, int height, String imgUrl) {
-        ViewGroup.LayoutParams lp = imgBg.getLayoutParams();
+    public void setImage(int width, int height, String imgUrl) {
+        ViewGroup.LayoutParams lp = imageView.getLayoutParams();
         lp.width = width;
         lp.height = height;
-        imgBg.setLayoutParams(lp);
-        ViewGroup.LayoutParams lp1 = layoutPoints.getLayoutParams();
+        imageView.setLayoutParams(lp);
+        ViewGroup.LayoutParams lp1 = pointsLayout.getLayoutParams();
         lp1.width = width;
         lp1.height = height;
-        layoutPoints.setLayoutParams(lp1);
-        Glide.with(mContext).load(imgUrl).asBitmap().into(imgBg);
+        pointsLayout.setLayoutParams(lp1);
+        Glide.with(context).load(imgUrl).asBitmap().into(imageView);
         addPoints(width, height);
     }
 
     public void setPoints(ArrayList<PointSimple> points) {
-        this.points = points;
+        this.pointList = points;
     }
 
     private void addPoints(int width, int height) {
-        layoutPoints.removeAllViews();
-        for (int i = 0; i < points.size(); i++) {
-            double width_scale = points.get(i).width_scale;
-            double height_scale = points.get(i).height_scale;
-            LinearLayout view = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.layout_img_point, this, false);
+        pointsLayout.removeAllViews();
+        for (int i = 0; i < pointList.size(); i++) {
+            double width_scale = pointList.get(i).width_scale;
+            double height_scale = pointList.get(i).height_scale;
+            LinearLayout view = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.layout_img_point, this, false);
             ImageView imageView = (ImageView) view.findViewById(R.id.imgPoint);
             imageView.setTag(i);
             AnimationDrawable animationDrawable = (AnimationDrawable) imageView.getDrawable();
@@ -85,7 +75,7 @@ public class ImageLayout extends FrameLayout implements View.OnClickListener {
             layoutParams.leftMargin = (int) (width * width_scale);
             layoutParams.topMargin = (int) (height * height_scale);
             imageView.setOnClickListener(this);
-            layoutPoints.addView(view, layoutParams);
+            pointsLayout.addView(view, layoutParams);
         }
     }
 

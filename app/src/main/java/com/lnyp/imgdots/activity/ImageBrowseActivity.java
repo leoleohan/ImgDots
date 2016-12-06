@@ -36,7 +36,7 @@ public class ImageBrowseActivity extends AppCompatActivity {
 
         ImgSimple imgSimple1 = new ImgSimple();
         imgSimple1.url = "http://file29.mafengwo.net/M00/B7/82/wKgBpVVyssiACp0tAASOeEyh5fo07.jpeg";
-        imgSimple1.scale = 1.6f;
+        imgSimple1.scale = 0.3f;
 
         ArrayList<PointSimple> pointSimples = new ArrayList<>();
         PointSimple pointSimple1 = new PointSimple();
